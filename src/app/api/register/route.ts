@@ -16,7 +16,7 @@ async function appendToSheet(row: string[]) {
   const sheets = google.sheets({ version: "v4", auth });
   await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,
-    range: "Sheet1!A:G",
+    range: "Sheet1!A:I",
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [row] },
   });
@@ -27,12 +27,14 @@ export async function POST(request: NextRequest) {
   const data = await request.json();
 
   const lead = {
-    name: data.name ?? "",
-    email: data.email ?? "",
-    phone: data.phone ?? "",
-    role: data.role ?? "",
-    company: data.company ?? "",
-    challenge: data.challenge ?? "",
+    name:         data.name         ?? "",
+    email:        data.email        ?? "",
+    phone:        data.phone        ?? "",
+    role:         data.role         ?? "",
+    company:      data.company      ?? "",
+    challenge:    data.challenge    ?? "",
+    inquiry_type: data.inquiry_type ?? "individual",
+    team_size:    data.team_size    ?? "",
   };
 
   // 1️⃣  Save to Supabase (primary)
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient();
     const { error } = await supabase.from("leads").insert([lead]);
     if (error) throw error;
-    console.log("✅ Lead saved to Supabase:", lead.name, lead.email);
+    console.log("✅ Lead saved to Supabase:", lead.name, lead.email, `(${lead.inquiry_type})`);
   } catch (err) {
     console.error("❌ Supabase error:", err);
   }
@@ -58,6 +60,8 @@ export async function POST(request: NextRequest) {
       lead.role,
       lead.company,
       lead.challenge,
+      lead.inquiry_type,
+      lead.team_size,
     ]);
     console.log("✅ Lead saved to Google Sheets:", lead.name);
   } catch (err) {

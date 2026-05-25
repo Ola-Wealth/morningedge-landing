@@ -26,9 +26,9 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="MorningEdge Co."
-            width={140}
+            width={40}
             height={40}
-            className="h-9 w-auto invert brightness-0 invert"
+            className="h-10 w-10 invert"
             priority
           />
         </div>

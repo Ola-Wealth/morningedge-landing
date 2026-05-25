@@ -7,6 +7,7 @@ import WhoItsFor from "./components/WhoItsFor";
 import Deliverables from "./components/Deliverables";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
+import TeamTraining from "./components/TeamTraining";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Deliverables />
         <Pricing />
         <FAQ />
+        <TeamTraining />
         <Register />
       </main>
       <Footer />
