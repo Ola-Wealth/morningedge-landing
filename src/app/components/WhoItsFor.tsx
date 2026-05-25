@@ -2,8 +2,8 @@ import FadeIn from "./FadeIn";
 
 const personas = [
   {
-    role: "The Business Manager",
-    body: "You're leading a team, producing reports, sitting in back-to-back meetings, and still expected to think strategically. AI gives you time back and makes your output sharper.",
+    role: "The Corporate Professional",
+    body: "Team lead, department head, senior manager — the demands on you are real. AI sharpens your decision-making, cuts meeting prep in half, and helps you show up to every room as the most prepared person in it.",
   },
   {
     role: "The Executive Admin",
