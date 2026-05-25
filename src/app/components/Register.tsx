@@ -8,8 +8,11 @@ const STEPS = [
   "Opening your booking page…",
 ];
 
+const CALENDLY_URL = "https://calendly.com/olaplusb/30min";
+
 function SuccessState() {
   const [step, setStep] = useState(0);
+  const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
     const t1 = setTimeout(() => setStep(1), 600);
@@ -19,6 +22,17 @@ function SuccessState() {
       clearTimeout(t2);
     };
   }, []);
+
+  // Once step 2 is active, run the 3-2-1 countdown then redirect
+  useEffect(() => {
+    if (step !== 2) return;
+    if (countdown === 0) {
+      window.location.href = CALENDLY_URL;
+      return;
+    }
+    const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [step, countdown]);
 
   return (
     <div className="text-center py-8">
@@ -62,8 +76,11 @@ function SuccessState() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 )}
-                {active && (
+                {active && i < 2 && (
                   <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+                )}
+                {active && i === 2 && countdown > 0 && (
+                  <span className="text-[10px] font-bold text-brand-blue leading-none">{countdown}</span>
                 )}
               </div>
               <span
@@ -72,6 +89,9 @@ function SuccessState() {
                 }`}
               >
                 {label}
+                {active && i === 2 && countdown > 0 && (
+                  <span className="text-[rgba(255,255,255,0.4)] ml-1">in {countdown}s…</span>
+                )}
               </span>
             </div>
           );
@@ -79,12 +99,10 @@ function SuccessState() {
       </div>
 
       <a
-        href="https://calendly.com/olaplusb/30min"
-        target="_blank"
-        rel="noopener noreferrer"
+        href={CALENDLY_URL}
         className="inline-block bg-brand-blue text-white text-sm font-medium px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
       >
-        Open Calendly manually →
+        Open Calendly now →
       </a>
     </div>
   );
@@ -144,9 +162,6 @@ export default function Register() {
         body: JSON.stringify(data),
       });
       setSubmitted(true);
-      setTimeout(() => {
-        window.open("https://calendly.com/olaplusb/30min", "_blank");
-      }, 1800);
     } finally {
       setLoading(false);
     }
