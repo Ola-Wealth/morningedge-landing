@@ -30,10 +30,16 @@ export default function Hero() {
             <span className="text-brand-blue">Edge.</span>
           </h1>
 
+          {/* Scarcity chip */}
+          <div className="inline-flex items-center gap-2 bg-[rgba(255,80,80,0.1)] border border-[rgba(255,80,80,0.3)] text-[#ff6b6b] text-xs font-medium px-3 py-1.5 rounded-full mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse" />
+            Only 5 new clients accepted per month
+          </div>
+
           {/* Subheadline */}
           <div className="border-l-2 border-brand-blue pl-4 mb-6">
             <p className="text-white text-lg font-medium">
-              Your AI literacy gap is showing.
+              Become the most AI-literate professional in the room.
             </p>
           </div>
 

@@ -373,6 +373,14 @@ export default function Register() {
                     {errors.challenge && <p className="text-red-400 text-xs mt-1">{errors.challenge}</p>}
                   </div>
 
+                  {/* Scarcity line */}
+                  {!isTeam && (
+                    <div className="flex items-center justify-center gap-2 text-[rgba(255,100,100,0.85)] text-xs font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse flex-shrink-0" />
+                      Only 5 spots open this month — filling fast.
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={loading}
@@ -383,7 +391,7 @@ export default function Register() {
                       : isTeam
                       ? "Book a team training call →"
                       : "Book my free discovery call →"}
-                  </button>
+  </button>
                 </form>
               </>
             )}

@@ -5,6 +5,7 @@ const packages = [
     name: "Taster Session",
     price: "₦35,000",
     usd: "~$22 USD",
+    totalValue: "₦95,000",
     duration: "1 session · 90 minutes",
     desc: "For professionals who want to experience the coaching before committing.",
     cta: "Start here",
@@ -14,6 +15,7 @@ const packages = [
     name: "Starter Pack",
     price: "₦120,000",
     usd: "~$75 USD",
+    totalValue: "₦180,000",
     duration: "4 sessions",
     desc: "Foundations and prompting — a focused outcome in a short engagement.",
     cta: "Get started",
@@ -23,6 +25,7 @@ const packages = [
     name: "Growth Pack",
     price: "₦220,000",
     usd: "~$138 USD",
+    totalValue: "₦360,000",
     duration: "8 sessions",
     desc: "Full coverage of communication and operations. Best for managers and admins.",
     cta: "Get started",
@@ -33,6 +36,7 @@ const packages = [
     name: "Full Program",
     price: "₦300,000",
     usd: "~$188 USD",
+    totalValue: "₦520,000",
     duration: "12 sessions · Complete program",
     desc: "Every module. Customised session. Personal AI system delivered at the end.",
     cta: "Get started",
@@ -74,6 +78,10 @@ export default function Pricing() {
                 <div className="mb-4 pt-3">
                   <p className="text-xs font-medium uppercase tracking-[1.5px] text-muted-text mb-2">
                     {pkg.name}
+                  </p>
+                  {/* Value vs price */}
+                  <p className="text-xs text-muted-text line-through decoration-red-400 mb-0.5">
+                    Total value: {pkg.totalValue}
                   </p>
                   <p className="text-3xl font-semibold text-navy">
                     {pkg.price}

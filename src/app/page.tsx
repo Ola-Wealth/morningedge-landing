@@ -5,7 +5,9 @@ import Overview from "./components/Overview";
 import HowItWorks from "./components/HowItWorks";
 import WhoItsFor from "./components/WhoItsFor";
 import Deliverables from "./components/Deliverables";
+import ValueStack from "./components/ValueStack";
 import Pricing from "./components/Pricing";
+import Guarantee from "./components/Guarantee";
 import FAQ from "./components/FAQ";
 import TeamTraining from "./components/TeamTraining";
 import Register from "./components/Register";
@@ -22,7 +24,9 @@ export default function Home() {
         <HowItWorks />
         <WhoItsFor />
         <Deliverables />
+        <ValueStack />
         <Pricing />
+        <Guarantee />
         <FAQ />
         <TeamTraining />
         <Register />
