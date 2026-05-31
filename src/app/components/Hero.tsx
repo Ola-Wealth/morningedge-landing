@@ -16,11 +16,19 @@ export default function Hero() {
         priority
       />
 
-      {/* Left-side text protection — navy darkens over text, fades out before silhouette */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 via-60% to-transparent" />
+      {/* Left-side text protection — explicit rgba to prevent white bleed */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to right, rgba(10,10,46,1) 0%, rgba(10,10,46,0.9) 45%, rgba(10,10,46,0.2) 70%, rgba(10,10,46,0) 100%)"
+        }}
+      />
 
-      {/* Bottom gradient to blend into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy to-transparent" />
+      {/* Bottom fade into next section */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32"
+        style={{ background: "linear-gradient(to top, rgba(10,10,46,1), rgba(10,10,46,0))" }}
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
