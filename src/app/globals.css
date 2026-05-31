@@ -1,19 +1,52 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand colours */
   --color-navy: #0a0a2e;
   --color-brand-blue: #1e1eb4;
   --color-light-bg: #f5f5f8;
   --color-muted-text: #6b6b80;
+
+  /* Border radius token system */
+  --radius-none: 0px;
+  --radius-xxs:  2px;
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-full: 100px;
 }
 
+/* ── Base ──────────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-inter, system-ui, sans-serif);
+  font-family: var(--font-manrope, system-ui, sans-serif);
+  text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #0a0a2e;
+}
+
+/* ── Heading letter-spacing ────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+/* ── Custom scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #080820;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #2a2a60 !important;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
 }
