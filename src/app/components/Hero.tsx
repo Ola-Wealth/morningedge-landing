@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="min-h-[100vh] flex items-center pt-16 relative overflow-hidden">
 
-      {/* Hero image with overlay blend */}
+      {/* Hero image */}
       <Image
         src="/hero-bg.jpg"
         alt=""
@@ -16,7 +16,13 @@ export default function Hero() {
         priority
       />
 
-      {/* Left-side text protection — explicit rgba to prevent white bleed */}
+      {/* Blue multiply layer — converts white/grey areas in image to blue */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "#1e1eb4", mixBlendMode: "multiply" }}
+      />
+
+      {/* Left-side text protection */}
       <div
         className="absolute inset-0"
         style={{

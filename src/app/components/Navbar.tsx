@@ -33,7 +33,7 @@ export default function Navbar() {
             className="h-9 w-9 invert"
             priority
           />
-          <span className="text-[17px] font-bold tracking-wide" style={{ fontFamily: "var(--font-playfair)" }}>
+          <span className="text-[17px] font-black tracking-wide" style={{ fontFamily: "var(--font-playfair)" }}>
             <span className="text-white">morning</span>
             <span className="text-brand-blue">edge</span>
           </span>
