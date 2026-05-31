@@ -1,31 +1,31 @@
-import FadeIn from "./FadeIn";
+import FadeIn from "../../components/FadeIn";
 
 const deliverables = [
   {
-    title: "Your personal prompt library",
-    desc: "Every template, categorised and ready to use.",
+    title: "Your property listing prompt library",
+    desc: "Every template, categorised and ready to produce compelling copy for any listing type on demand.",
   },
   {
-    title: "Your custom tool stack",
-    desc: "The exact combination of AI tools chosen for your role.",
+    title: "Your lead response system",
+    desc: "AI-powered replies for DMs, emails, and enquiry forms — personalised and professional, sent in seconds.",
   },
   {
-    title: "Your AI workflow design",
-    desc: "How AI fits into your daily and weekly rhythm.",
+    title: "Your content calendar framework",
+    desc: "How to generate consistent social content from every listing, project, or market insight you work with.",
   },
   {
     title: "WhatsApp coaching support",
-    desc: "Access to your coach between sessions for quick questions.",
+    desc: "Access to your coach between sessions for quick questions and real-time guidance.",
   },
   {
     title: "Session notes after every call",
-    desc: "Written summaries so nothing is lost.",
+    desc: "Written summaries so nothing is lost and everything is actionable.",
   },
 ];
 
 export default function Deliverables() {
   return (
-    <section className="bg-navy py-32">
+    <section className="bg-navy py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left */}

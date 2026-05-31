@@ -2,32 +2,32 @@
 
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import FadeIn from "./FadeIn";
+import FadeIn from "../../components/FadeIn";
 
 const faqs = [
   {
     q: "Do I need any technical background?",
-    a: "None at all. This program was designed for business professionals, not developers. If you can use WhatsApp, you can use the tools in this program.",
+    a: "None at all. If you can use WhatsApp to market properties, you already have the mindset this programme builds on. This was designed for working property professionals, not developers.",
   },
   {
-    q: "I've tried ChatGPT and it wasn't impressive. Will this be different?",
-    a: "That's exactly why this program exists. ChatGPT isn't the problem — prompting is. Most people get poor results because they ask poorly. Session 3 alone will change your entire experience of every AI tool.",
+    q: "Will this work for my specific market in Nigeria?",
+    a: "Yes. Every session is built around your actual work — your listings, your clients, your city. Whether you operate in Lagos Island, Lekki, Abuja, Port Harcourt, or anywhere else in Nigeria, the programme adapts to your market.",
   },
   {
-    q: "How long does the full program take?",
-    a: "At one session per week, the full 12-session program takes 3 months. At two sessions per week, it's 6 weeks. You set the schedule.",
+    q: "How is this different from a social media or digital marketing course?",
+    a: "Digital marketing courses teach platforms. This programme builds your AI system — a set of tools and habits that improve everything you do: listing copy, lead responses, content creation, research, and client communication.",
   },
   {
-    q: "What if I only have time for a few sessions?",
-    a: "The Starter Pack (4 sessions) and Growth Pack (8 sessions) are designed for focused outcomes. You can always continue or upgrade later.",
+    q: "What AI tools will I learn to use?",
+    a: "ChatGPT, Claude, Gemini, Canva AI, Perplexity, and more — each selected based on what Nigerian real estate professionals actually need. No unnecessary tools, no hype.",
   },
   {
-    q: "What tools will I learn?",
-    a: "ChatGPT, Claude, Gemini, Notion AI, Canva AI, Microsoft Copilot, Otter.ai, Perplexity, Grammarly, and more — selected for your role.",
+    q: "Can AI help with listings on PropertyPro and Nigeria Property Centre?",
+    a: "Absolutely. Session 2 covers property copywriting specifically — writing listings that attract serious enquiries, position your properties above the competition, and get you called first.",
   },
   {
     q: "Is there support between sessions?",
-    a: "Yes. WhatsApp access to your coach throughout the program for quick questions and guidance between sessions.",
+    a: "Yes. WhatsApp access to your coach throughout the programme for quick questions and real-time guidance — exactly when you need it.",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-white py-32">
+    <section id="faq" className="bg-white py-24">
       <div className="max-w-[680px] mx-auto px-6">
         <FadeIn>
           <h2 className="text-[40px] leading-[1.1] font-semibold text-navy text-center mb-14">

@@ -1,0 +1,72 @@
+import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
+import { google } from "googleapis";
+
+// Same sheet as the main AI Edge landing — target a separate "RealEstate" tab.
+// Create that tab in the sheet before going live.
+const SHEET_ID = "1iRrJzDangjtuV4m6vKl_ikpT8dimdZaIWZ78fFxmbvQ";
+
+async function appendToSheet(row: string[]) {
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    },
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+  const sheets = google.sheets({ version: "v4", auth });
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: "RealEstate!A:I",
+    valueInputOption: "USER_ENTERED",
+    requestBody: { values: [row] },
+  });
+}
+
+export async function POST(request: NextRequest) {
+  const data = await request.json();
+
+  const lead = {
+    name:         data.name         ?? "",
+    email:        data.email        ?? "",
+    phone:        data.phone        ?? "",
+    role:         data.role         ?? "",
+    company:      data.company      ?? "",
+    challenge:    data.challenge    ?? "",
+    inquiry_type: data.inquiry_type ?? "individual",
+    team_size:    data.team_size    ?? "",
+  };
+
+  // 1️⃣  Save to Supabase leads_realestate table (primary)
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.from("leads_realestate").insert([lead]);
+    if (error) throw error;
+    console.log("✅ RE lead saved to Supabase:", lead.name, lead.email, `(${lead.inquiry_type})`);
+  } catch (err) {
+    console.error("❌ Supabase error:", err);
+  }
+
+  // 2️⃣  Save to Google Sheets "RealEstate" tab (backup)
+  try {
+    const timestamp = new Date().toLocaleString("en-NG", {
+      timeZone: "Africa/Lagos",
+    });
+    await appendToSheet([
+      timestamp,
+      lead.name,
+      lead.email,
+      lead.phone,
+      lead.role,
+      lead.company,
+      lead.challenge,
+      lead.inquiry_type,
+      lead.team_size,
+    ]);
+    console.log("✅ RE lead saved to Google Sheets:", lead.name);
+  } catch (err) {
+    console.error("❌ Google Sheets error:", err);
+  }
+
+  return NextResponse.json({ success: true });
+}

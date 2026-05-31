@@ -11,19 +11,17 @@ const STEPS = [
 ];
 
 const ROLE_OPTIONS = [
-  "Team Lead",
-  "Department Head / HOD",
-  "Manager / Senior Manager",
-  "Corporate Manager",
-  "Executive Admin",
-  "Small Business Owner",
-  "AI Enthusiast",
+  "Independent Realtor",
+  "Property Agent",
+  "Estate Developer",
+  "Real Estate Firm Lead",
+  "Property Manager",
+  "Real Estate Investor",
   "Other",
 ];
 
-const TEAM_SIZES = ["2–5", "6–15", "16–30", "31–50", "50+"];
+const AGENCY_SIZES = ["2–5", "6–15", "16–30", "31–50", "50+"];
 
-// ── Success state with 3-step countdown ──────────────────────────────────────
 function SuccessState({ isTeam }: { isTeam: boolean }) {
   const [step, setStep] = useState(0);
   const [countdown, setCountdown] = useState(3);
@@ -51,7 +49,7 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
       <h3 className="text-white text-xl font-semibold mb-2">You&apos;re all set.</h3>
       <p className="text-[rgba(255,255,255,0.5)] text-sm mb-8">
         {isTeam
-          ? "Hold on — we're preparing your team training call."
+          ? "Hold on — we're preparing your agency training call."
           : "Hold on — we're getting things ready for you."}
       </p>
 
@@ -90,7 +88,6 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
 export default function Register() {
   const [activeTab, setActiveTab] = useState<"individual" | "team">("individual");
   const [submitted, setSubmitted] = useState(false);
@@ -101,7 +98,6 @@ export default function Register() {
 
   const isTeam = activeTab === "team";
 
-  // Pre-select team tab if navigated from TeamTraining CTA
   useEffect(() => {
     const tab = sessionStorage.getItem("registerTab");
     if (tab === "team") {
@@ -120,17 +116,17 @@ export default function Register() {
 
   const validate = (form: HTMLFormElement) => {
     const errs: Record<string, string> = {};
-    const name    = (form.elements.namedItem("name")    as HTMLInputElement).value;
-    const email   = (form.elements.namedItem("email")   as HTMLInputElement).value;
-    const phone   = (form.elements.namedItem("phone")   as HTMLInputElement).value;
-    const company = (form.elements.namedItem("company") as HTMLInputElement).value;
+    const name      = (form.elements.namedItem("name")      as HTMLInputElement).value;
+    const email     = (form.elements.namedItem("email")     as HTMLInputElement).value;
+    const phone     = (form.elements.namedItem("phone")     as HTMLInputElement).value;
+    const company   = (form.elements.namedItem("company")   as HTMLInputElement).value;
     const challenge = (form.elements.namedItem("challenge") as HTMLTextAreaElement).value;
 
-    if (!name.trim())    errs.name    = "Name is required.";
+    if (!name.trim())  errs.name  = "Name is required.";
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       errs.email = "A valid email is required.";
-    if (!phone.trim())   errs.phone   = "Phone number is required.";
-    if (isTeam && !company.trim()) errs.company = "Organisation name is required.";
+    if (!phone.trim()) errs.phone = "Phone number is required.";
+    if (isTeam && !company.trim()) errs.company = "Agency name is required.";
     if (selectedRole === "Other" && !otherRole.trim())
       errs.otherRole = "Please specify your role.";
     if (!challenge.trim())
@@ -165,7 +161,7 @@ export default function Register() {
     };
 
     try {
-      await fetch("/api/register", {
+      await fetch("/api/register-realestate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -182,21 +178,21 @@ export default function Register() {
 
   const individualBullets = [
     "No sales pressure",
-    "Fully personalised to your situation",
+    "Built around your listings and market",
     "Spots are limited each month",
   ];
   const teamBullets = [
-    "Curriculum tailored to your team's function",
+    "Curriculum tailored to your agency's function",
     "Delivered live — remote or on-site",
-    "Every team member walks away equipped",
+    "Every agent walks away equipped",
   ];
 
   return (
-    <section id="register" className="bg-navy py-32">
+    <section id="register" className="bg-navy py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-          {/* Left — adapts to tab */}
+          {/* Left */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[1.5px] text-brand-blue mb-6">
               Start here
@@ -205,14 +201,14 @@ export default function Register() {
             {isTeam ? (
               <>
                 <h2 className="text-[40px] leading-[1.1] font-semibold text-white mb-6">
-                  Train your team.
+                  Train your agency.
                   <br />
                   Raise the bar.
                 </h2>
                 <p className="text-[rgba(255,255,255,0.6)] text-lg leading-relaxed mb-10">
-                  One programme. Every person on your team walks away
+                  One programme. Every agent on your team walks away
                   AI-literate, equipped with practical tools, and ready to
-                  apply them to their actual work.
+                  apply them to their next listing.
                 </p>
               </>
             ) : (
@@ -223,8 +219,9 @@ export default function Register() {
                   discovery call.
                 </h2>
                 <p className="text-[rgba(255,255,255,0.6)] text-lg leading-relaxed mb-10">
-                  40 minutes. We assess your AI readiness, understand your
-                  role, and recommend the right package. No commitment required.
+                  30 minutes. We assess your AI readiness, understand your
+                  property business, and recommend the right package. No
+                  commitment required.
                 </p>
               </>
             )}
@@ -258,7 +255,7 @@ export default function Register() {
                           : "text-[rgba(255,255,255,0.5)] hover:text-white"
                       }`}
                     >
-                      {tab === "individual" ? "For Me" : "For My Team"}
+                      {tab === "individual" ? "For Me" : "For My Agency"}
                     </button>
                   ))}
                 </div>
@@ -267,34 +264,34 @@ export default function Register() {
 
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className={labelClass}>Full name</label>
-                    <input id="name" name="name" type="text" className={inputClass} placeholder="Your full name" />
+                    <label htmlFor="re-name" className={labelClass}>Full name</label>
+                    <input id="re-name" name="name" type="text" className={inputClass} placeholder="Your full name" />
                     {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className={labelClass}>
+                    <label htmlFor="re-email" className={labelClass}>
                       {isTeam ? "Work email" : "Email address"}
                     </label>
-                    <input id="email" name="email" type="email" className={inputClass} placeholder="you@example.com" />
+                    <input id="re-email" name="email" type="email" className={inputClass} placeholder="you@example.com" />
                     {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="phone" className={labelClass}>Phone number</label>
-                    <input id="phone" name="phone" type="tel" className={inputClass} placeholder="+234 800 000 0000" />
+                    <label htmlFor="re-phone" className={labelClass}>Phone number</label>
+                    <input id="re-phone" name="phone" type="tel" className={inputClass} placeholder="+234 800 000 0000" />
                     {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                   </div>
 
                   {/* Role */}
                   <div>
-                    <label htmlFor="role" className={labelClass}>
-                      {isTeam ? "Your role in the organisation" : "Your role"}
+                    <label htmlFor="re-role" className={labelClass}>
+                      {isTeam ? "Your role in the agency" : "Your role"}
                     </label>
                     <select
-                      id="role"
+                      id="re-role"
                       name="role"
                       className={`${inputClass} appearance-none`}
                       value={selectedRole}
@@ -319,34 +316,34 @@ export default function Register() {
                     )}
                   </div>
 
-                  {/* Company / Organisation */}
+                  {/* Agency name */}
                   <div>
-                    <label htmlFor="company" className={labelClass}>
-                      {isTeam ? "Organisation name" : (
+                    <label htmlFor="re-company" className={labelClass}>
+                      {isTeam ? "Agency name" : (
                         <span>
-                          Company name{" "}
+                          Agency name{" "}
                           <span className="text-[rgba(255,255,255,0.3)]">(optional)</span>
                         </span>
                       )}
                     </label>
                     <input
-                      id="company"
+                      id="re-company"
                       name="company"
                       type="text"
                       className={inputClass}
-                      placeholder={isTeam ? "Your organisation" : "Your company"}
+                      placeholder={isTeam ? "Your agency" : "Your agency or firm"}
                     />
                     {errors.company && <p className="text-red-400 text-xs mt-1">{errors.company}</p>}
                   </div>
 
-                  {/* Team size — team tab only */}
+                  {/* Agency size — team tab only */}
                   {isTeam && (
                     <div>
-                      <label htmlFor="team_size" className={labelClass}>Team size</label>
-                      <select id="team_size" name="team_size" className={`${inputClass} appearance-none`}>
-                        <option value="" className="bg-[#0a0a2e]">Select team size</option>
-                        {TEAM_SIZES.map((s) => (
-                          <option key={s} value={s} className="bg-[#0a0a2e]">{s} people</option>
+                      <label htmlFor="re-team-size" className={labelClass}>Agency size</label>
+                      <select id="re-team-size" name="team_size" className={`${inputClass} appearance-none`}>
+                        <option value="" className="bg-[#0a0a2e]">Select agency size</option>
+                        {AGENCY_SIZES.map((s) => (
+                          <option key={s} value={s} className="bg-[#0a0a2e]">{s} agents</option>
                         ))}
                       </select>
                     </div>
@@ -354,32 +351,24 @@ export default function Register() {
 
                   {/* Challenge */}
                   <div>
-                    <label htmlFor="challenge" className={labelClass}>
+                    <label htmlFor="re-challenge" className={labelClass}>
                       {isTeam
-                        ? "What do you want your team to gain from this training?"
-                        : "What’s your biggest challenge with AI right now?"}
+                        ? "What do you want your agency to be able to do after this training?"
+                        : "What's your biggest challenge in your property business right now?"}
                     </label>
                     <textarea
-                      id="challenge"
+                      id="re-challenge"
                       name="challenge"
                       rows={3}
                       className={`${inputClass} resize-none`}
                       placeholder={
                         isTeam
-                          ? "Describe what you want your team to be able to do…"
-                          : "Tell us what’s holding you back…"
+                          ? "Describe what you want your agents to be able to do…"
+                          : "E.g., writing listings quickly, following up with leads, marketing on social…"
                       }
                     />
                     {errors.challenge && <p className="text-red-400 text-xs mt-1">{errors.challenge}</p>}
                   </div>
-
-                  {/* Scarcity line */}
-                  {!isTeam && (
-                    <div className="flex items-center justify-center gap-2 text-[rgba(255,100,100,0.85)] text-xs font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse flex-shrink-0" />
-                      Only 5 spots open this month — filling fast.
-                    </div>
-                  )}
 
                   <button
                     type="submit"
@@ -389,9 +378,9 @@ export default function Register() {
                     {loading
                       ? "Sending…"
                       : isTeam
-                      ? "Book a team training call →"
+                      ? "Book an agency training call →"
                       : "Book my free discovery call →"}
-  </button>
+                  </button>
                 </form>
               </>
             )}

@@ -20,33 +20,32 @@ export default function Hero() {
           {/* Badge */}
           <div className="inline-block mb-8">
             <span className="text-xs font-medium uppercase tracking-[1.5px] bg-[rgba(30,30,180,0.15)] border border-[rgba(30,30,180,0.35)] text-brand-blue px-4 py-2 rounded-full">
-              A MorningEdge Coaching Program
+              A MorningEdge Coaching Program — Real Estate Edition
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-[60px] md:text-[96px] leading-[0.95] mb-6">
+          <h1 className="text-[48px] md:text-[72px] leading-[1.0] font-semibold mb-6">
             <span className="text-white">The AI </span>
             <span className="text-brand-blue">Edge.</span>
+            <br />
+            <span className="text-[rgba(255,255,255,0.45)] text-[32px] md:text-[44px] leading-[1.2]">
+              For Real Estate.
+            </span>
           </h1>
-
-          {/* Scarcity chip */}
-          <div className="inline-flex items-center gap-2 bg-[rgba(255,80,80,0.1)] border border-[rgba(255,80,80,0.3)] text-[#ff6b6b] text-xs font-medium px-3 py-1.5 rounded-full mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse" />
-            Only 5 new clients accepted per month
-          </div>
 
           {/* Subheadline */}
           <div className="border-l-2 border-brand-blue pl-4 mb-6">
             <p className="text-white text-lg font-medium">
-              Become the most AI-literate professional in the room.
+              Your AI literacy gap is costing you deals.
             </p>
           </div>
 
           {/* Body */}
           <p className="text-[rgba(255,255,255,0.65)] text-lg leading-relaxed mb-10 max-w-xl">
-            Most professionals don&apos;t know what they&apos;re missing. This
-            program closes the gap — live, 1-on-1, and with zero code required.
+            Most Nigerian property professionals are still doing manually what AI
+            handles in minutes. This programme closes the gap — live, 1-on-1,
+            and built around how real estate actually works.
           </p>
 
           {/* CTA */}
@@ -58,12 +57,12 @@ export default function Hero() {
           </a>
 
           <p className="text-[rgba(255,255,255,0.4)] text-sm mb-10">
-            40 minutes. No commitment. Just clarity.
+            30 minutes. No commitment. Just clarity.
           </p>
 
           {/* Stat pills */}
           <div className="flex flex-wrap gap-3">
-            {["12 live sessions", "Zero code", "Built around you"].map(
+            {["12 live sessions", "Zero code", "Built for property pros"].map(
               (stat) => (
                 <div
                   key={stat}

@@ -21,10 +21,10 @@ const personas = [
 
 export default function WhoItsFor() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-32">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
-          <h2 className="text-[40px] leading-[1.1] font-semibold text-navy text-center mb-16">
+          <h2 className="text-[44px] leading-[1.05] text-navy text-center mb-16">
             Built for four kinds of professionals.
           </h2>
         </FadeIn>
@@ -33,7 +33,7 @@ export default function WhoItsFor() {
           {personas.map((p, i) => (
             <FadeIn key={p.role} delay={i * 0.1}>
               <div
-                className="rounded-xl p-8 border border-[#e0e0e8] transition-transform duration-300 hover:-translate-y-1"
+                className="rounded-xl p-8 border border-[#e0e0e8] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-navy/10 hover:border-[#c0c0d8]"
                 style={{ borderTop: "3px solid #1e1eb4" }}
               >
                 <h3 className="text-navy text-lg font-semibold mb-4">

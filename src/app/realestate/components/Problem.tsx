@@ -1,23 +1,23 @@
-import FadeIn from "./FadeIn";
+import FadeIn from "../../components/FadeIn";
 
 const problems = [
   {
-    title: "You're doing manually what AI does in seconds",
-    body: "Emails, reports, research, proposals — tasks that take hours are being done in minutes by professionals who know how to use AI.",
+    title: "Your listings read like everyone else's",
+    body: "Generic descriptions, repetitive language, no personality. AI generates compelling property copy in seconds — listings that attract enquiries before the next agent finishes typing.",
   },
   {
-    title: "The tools exist. Nobody taught you how to use them.",
-    body: "It's not about access. ChatGPT, Claude, Gemini — they're all free. The gap is knowing how to speak to them, when to trust them, and how to make them work for your specific role.",
+    title: "You're losing leads while you sleep",
+    body: "Every DM left unanswered after 9pm is a deal walking to the next agent. AI follow-up systems engage prospects the moment they reach out — 24 hours a day, without extra staff.",
   },
   {
-    title: "The gap is widening every month.",
-    body: "AI literacy is becoming the dividing line between professionals who scale and those who stay busy. This program puts you on the right side of that line.",
+    title: "The top agents in your market are already ahead",
+    body: "AI literacy is becoming the dividing line between agents who scale and those who stay busy. In Lagos, Abuja, and Port Harcourt, the gap is widening every quarter. This programme puts you on the right side.",
   },
 ];
 
 export default function Problem() {
   return (
-    <section className="bg-white py-32">
+    <section className="bg-white py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left */}
@@ -26,11 +26,13 @@ export default function Problem() {
               The gap is real
             </p>
             <h2 className="text-[40px] leading-[1.1] font-semibold text-navy">
-              AI is already at work.
+              AI is already
               <br />
-              Most professionals
+              closing deals.
               <br />
-              are still catching up.
+              Most agents are
+              <br />
+              still catching up.
             </h2>
           </FadeIn>
 

@@ -1,31 +1,31 @@
-import FadeIn from "./FadeIn";
+import FadeIn from "../../components/FadeIn";
 
 const steps = [
   {
     number: "01",
     title: "Free discovery call",
-    body: "A 40-minute conversation to assess your AI readiness, understand your role, and recommend the right package.",
+    body: "A 30-minute conversation to assess your AI readiness, understand your property business, and recommend the right package.",
   },
   {
     number: "02",
     title: "Personalised intake",
-    body: "A short form so the coach knows your tools, goals, and top three challenges before Session 1 begins.",
+    body: "A short form so the coach knows your listing types, goals, and top three challenges before Session 1 begins.",
   },
   {
     number: "03",
     title: "12 live sessions",
-    body: "Six modules. Real work. Real results. Each session ends with a practical task applied to your job.",
+    body: "Six modules. Real work. Real results. Each session ends with a practical task applied directly to your property business.",
   },
   {
     number: "04",
-    title: "Your personal AI system",
-    body: "The final session delivers your complete tool stack, prompt library, and workflow design — yours to keep.",
+    title: "Your property AI system",
+    body: "The final session delivers your complete tool stack, listing prompt library, and workflow design — yours to keep.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-light-bg py-32">
+    <section id="how-it-works" className="bg-light-bg py-24">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <h2 className="text-[40px] leading-[1.1] font-semibold text-navy text-center mb-16">

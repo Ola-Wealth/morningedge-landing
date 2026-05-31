@@ -16,7 +16,7 @@ const ENTRY  = "₦35,000";
 
 export default function ValueStack() {
   return (
-    <section className="bg-navy py-24">
+    <section className="bg-navy py-32">
       <div className="max-w-3xl mx-auto px-6">
         <FadeIn>
           <p className="text-xs font-medium uppercase tracking-[1.5px] text-brand-blue mb-4 text-center">
