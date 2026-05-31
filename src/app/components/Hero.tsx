@@ -7,17 +7,17 @@ export default function Hero() {
   return (
     <section className="min-h-[100vh] flex items-center pt-16 relative overflow-hidden">
 
-      {/* Full-width background image */}
+      {/* Hero image with overlay blend */}
       <Image
         src="/hero-bg.jpg"
         alt=""
         fill
-        className="object-cover object-center"
+        className="object-cover object-center mix-blend-overlay opacity-75"
         priority
       />
 
-      {/* Gradient overlay — readable on left, reveals image on right */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/50 to-transparent" />
+      {/* Left-side text protection — navy darkens over text, fades out before silhouette */}
+      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 via-60% to-transparent" />
 
       {/* Bottom gradient to blend into next section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy to-transparent" />

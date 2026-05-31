@@ -33,9 +33,9 @@ export default function Navbar() {
             className="h-9 w-9 invert"
             priority
           />
-          <span className="text-[17px] font-semibold tracking-tight">
-            <span className="text-white">Morning</span>
-            <span className="text-brand-blue">Edge</span>
+          <span className="text-[15px] font-bold tracking-wide">
+            <span className="text-white">morning</span>
+            <span className="text-brand-blue">edge</span>
           </span>
         </div>
 
