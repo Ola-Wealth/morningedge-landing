@@ -23,16 +23,20 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center">
+        {/* Logo + Wordmark */}
+        <div className="flex items-center gap-2.5">
           <Image
             src="/logo.png"
             alt="MorningEdge Co."
             width={40}
             height={40}
-            className="h-10 w-10 invert"
+            className="h-9 w-9 invert"
             priority
           />
+          <span className="text-[17px] font-semibold tracking-tight">
+            <span className="text-white">Morning</span>
+            <span className="text-brand-blue">Edge</span>
+          </span>
         </div>
 
         {/* Desktop CTA */}

@@ -1,25 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="bg-navy min-h-[90vh] flex items-center pt-16 relative overflow-hidden">
-      {/* Decorative circles */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full border border-[rgba(30,30,180,0.12)] pointer-events-none translate-x-1/4" />
-      <div className="absolute top-1/3 right-0 w-[320px] h-[320px] rounded-full border border-[rgba(30,30,180,0.08)] pointer-events-none translate-x-1/3" />
-      <div className="absolute bottom-1/4 left-0 w-[200px] h-[200px] rounded-full border border-[rgba(30,30,180,0.07)] pointer-events-none -translate-x-1/3" />
+    <section className="min-h-[100vh] flex items-center pt-16 relative overflow-hidden">
 
-      <div className="max-w-6xl mx-auto px-6 py-20 w-full">
+      {/* Full-width background image */}
+      <Image
+        src="/hero-bg.jpg"
+        alt=""
+        fill
+        className="object-cover object-center"
+        priority
+      />
+
+      {/* Gradient overlay — readable on left, reveals image on right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/50 to-transparent" />
+
+      {/* Bottom gradient to blend into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="max-w-3xl"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-2xl"
         >
           {/* Badge */}
           <div className="inline-block mb-8">
-            <span className="text-xs font-medium uppercase tracking-[1.5px] bg-[rgba(30,30,180,0.15)] border border-[rgba(30,30,180,0.35)] text-brand-blue px-4 py-2 rounded-full">
+            <span className="text-xs font-medium uppercase tracking-[1.5px] bg-[rgba(30,30,180,0.2)] border border-[rgba(30,30,180,0.4)] text-brand-blue px-4 py-2 rounded-full">
               A MorningEdge Coaching Program
             </span>
           </div>
@@ -31,7 +44,7 @@ export default function Hero() {
           </h1>
 
           {/* Scarcity chip */}
-          <div className="inline-flex items-center gap-2 bg-[rgba(255,80,80,0.1)] border border-[rgba(255,80,80,0.3)] text-[#ff6b6b] text-xs font-medium px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-[rgba(255,80,80,0.12)] border border-[rgba(255,80,80,0.3)] text-[#ff6b6b] text-xs font-medium px-3 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse" />
             Only 5 new clients accepted per month
           </div>
@@ -44,7 +57,7 @@ export default function Hero() {
           </div>
 
           {/* Body */}
-          <p className="text-[rgba(255,255,255,0.65)] text-lg leading-relaxed mb-10 max-w-xl">
+          <p className="text-[rgba(255,255,255,0.7)] text-lg leading-relaxed mb-10 max-w-xl">
             Most professionals don&apos;t know what they&apos;re missing. This
             program closes the gap — live, 1-on-1, and with zero code required.
           </p>
@@ -52,7 +65,7 @@ export default function Hero() {
           {/* CTA */}
           <a
             href="#register"
-            className="inline-block bg-brand-blue text-white font-medium text-base px-8 py-4 rounded-[10px] hover:opacity-90 transition-opacity mb-4"
+            className="inline-block bg-brand-blue text-white font-medium text-base px-8 py-4 rounded-[10px] hover:opacity-90 mb-4"
           >
             Book your free discovery call →
           </a>
@@ -63,16 +76,14 @@ export default function Hero() {
 
           {/* Stat pills */}
           <div className="flex flex-wrap gap-3">
-            {["12 live sessions", "Zero code", "Built around you"].map(
-              (stat) => (
-                <div
-                  key={stat}
-                  className="border border-[rgba(30,30,180,0.4)] bg-[rgba(30,30,180,0.08)] text-white text-sm font-medium px-5 py-2.5 rounded-full"
-                >
-                  {stat}
-                </div>
-              )
-            )}
+            {["12 live sessions", "Zero code", "Built around you"].map((stat) => (
+              <div
+                key={stat}
+                className="border border-[rgba(30,30,180,0.5)] bg-[rgba(30,30,180,0.15)] backdrop-blur-sm text-white text-sm font-medium px-5 py-2.5 rounded-full"
+              >
+                {stat}
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>
