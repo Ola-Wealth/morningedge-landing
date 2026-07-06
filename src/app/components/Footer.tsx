@@ -40,10 +40,10 @@ export default function Footer() {
           {/* Right */}
           <div className="flex flex-col gap-1.5">
             <p className="text-[rgba(255,255,255,0.5)] text-sm">
-              hello@morningedgesystems.com
+              hello@aiedge.morningedgesystems.com
             </p>
             <p className="text-[rgba(255,255,255,0.5)] text-sm">
-              morningedgesystems.com
+              aiedge.morningedgesystems.com
             </p>
             <p className="text-[rgba(255,255,255,0.5)] text-sm">
               Lagos, Nigeria

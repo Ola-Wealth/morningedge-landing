@@ -7,7 +7,7 @@ import FadeIn from "./FadeIn";
 const PAYMENT_URL = "https://paystack.shop/pay/ai-edge";
 
 /** Served from public/prompt-playbook.pdf on whatever domain the site runs on
- *  (morningedgesystems.com/prompt-playbook.pdf in production). */
+ *  (aiedge.morningedgesystems.com/prompt-playbook.pdf in production). */
 const PLAYBOOK_URL = "/prompt-playbook.pdf";
 
 type Dim = "tools" | "prompting" | "habit" | "workflow" | "data" | "decks" | "context" | "thinking";

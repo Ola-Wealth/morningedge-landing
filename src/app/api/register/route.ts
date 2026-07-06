@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { google } from "googleapis";
 
 const SHEET_ID = "1iRrJzDangjtuV4m6vKl_ikpT8dimdZaIWZ78fFxmbvQ";
-const SITE_URL = "https://morningedgesystems.com";
+const SITE_URL = "https://aiedge.morningedgesystems.com";
 const PAYMENT_URL = "https://paystack.shop/pay/ai-edge";
 const WHATSAPP_URL = "https://wa.me/2348100526153";
 
