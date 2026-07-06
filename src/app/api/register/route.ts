@@ -77,7 +77,7 @@ function emailContent(lead: { name: string; inquiry_type: string; challenge: str
 async function sendEmail(lead: { name: string; email: string; inquiry_type: string; challenge: string }) {
   const key = process.env.RESEND_API_KEY;
   if (!key || !lead.email) return;
-  const from = process.env.EMAIL_FROM ?? "MorningEdge AI <hello@morningedgesystems.com>";
+  const from = process.env.EMAIL_FROM ?? "MorningEdge AI <hello@aiedge.morningedgesystems.com>";
   const { subject, html } = emailContent(lead);
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
