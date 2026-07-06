@@ -24,9 +24,12 @@ export default function WhoItsFor() {
     <section className="bg-white py-32">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
-          <h2 className="text-[44px] leading-[1.05] text-navy text-center mb-16">
+          <h2 className="text-[44px] leading-[1.05] text-navy text-center mb-4">
             Built for four kinds of professionals.
           </h2>
+          <p className="text-muted-text text-center text-lg mb-16 max-w-xl mx-auto">
+            You&apos;ll learn alongside a cohort of people who lead, manage, and run things.
+          </p>
         </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-6">

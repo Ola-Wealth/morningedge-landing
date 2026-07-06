@@ -15,13 +15,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "The AI Edge — 1-on-1 AI Literacy Coaching | MorningEdge Co.",
+  title: "The AI Edge — A Live AI-Literacy Cohort | MorningEdge AI",
   description:
-    "Close the AI literacy gap with a personalised 1-on-1 coaching program. No code required. Built around your role, your tools, and your challenges.",
+    "Close the AI literacy gap in a live 6-session cohort — 4 build sessions, 2 hot-seat reviews, and a real capstone you ship for your job. No code required. Early-bird seats open.",
   openGraph: {
-    title: "The AI Edge — 1-on-1 AI Literacy Coaching",
+    title: "The AI Edge — A Live AI-Literacy Cohort",
     description:
-      "A coaching program that closes the AI gap — live, 1-on-1, and with zero code required.",
+      "A live cohort that closes the AI gap — 6 sessions, a real capstone, a community, and zero code required.",
     type: "website",
   },
 };

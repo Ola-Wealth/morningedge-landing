@@ -1,31 +1,31 @@
 import FadeIn from "./FadeIn";
 
 const items = [
-  { label: "12 Live 1-on-1 Coaching Sessions",          value: "₦300,000" },
-  { label: "AI Readiness Assessment (Session 1)",        value: "₦25,000"  },
-  { label: "Custom AI Toolkit Built for Your Role",      value: "₦40,000"  },
-  { label: "Personal AI Implementation Blueprint",       value: "₦35,000"  },
-  { label: "Prompt Library for Your Profession",         value: "₦20,000"  },
-  { label: "WhatsApp Support Between Sessions",          value: "₦40,000"  },
-  { label: "All Session Recordings (Yours to Keep)",     value: "₦35,000"  },
-  { label: "30-Day Post-Programme Check-In Call",        value: "₦25,000"  },
+  { label: "6 Live Cohort Sessions (4 Build + 2 Hot-Seat)", value: "₦260,000" },
+  { label: "AI Readiness Assessment + Onboarding",          value: "₦25,000"  },
+  { label: "Capstone: Ship 1 Real AI Workflow",             value: "₦60,000"  },
+  { label: "Prompt Library + Workflow Templates",           value: "₦40,000"  },
+  { label: "Private Cohort Community (ongoing)",            value: "₦45,000"  },
+  { label: "All Session Recordings (Yours to Keep)",        value: "₦30,000"  },
+  { label: "Weekly Assignments + Accountability",           value: "₦20,000"  },
+  { label: "Certificate of Completion",                     value: "₦20,000"  },
 ];
 
-const TOTAL = "₦520,000";
-const ENTRY  = "₦35,000";
+const TOTAL = "₦500,000";
+const ENTRY  = "₦50,000";
 
 export default function ValueStack() {
   return (
     <section className="bg-navy py-32">
       <div className="max-w-3xl mx-auto px-6">
         <FadeIn>
-          <p className="text-xs font-medium uppercase tracking-[1.5px] text-brand-blue mb-4 text-center">
+          <p className="text-xs font-bold uppercase tracking-[2px] text-lav mb-4 text-center">
             What you actually get
           </p>
           <h2 className="text-[38px] leading-[1.1] font-semibold text-white text-center mb-4">
             Here&apos;s everything included
             <br />
-            in the full programme.
+            in the cohort.
           </h2>
           <p className="text-[rgba(255,255,255,0.5)] text-center text-lg mb-12">
             We built value into every layer — so you never have to wonder if it&apos;s worth it.
@@ -81,7 +81,7 @@ export default function ValueStack() {
                     from {ENTRY}
                   </span>
                   <p className="text-[rgba(255,255,255,0.4)] text-xs mt-0.5">
-                    Taster · Starter · Growth · Full Programme
+                    Early-bird price · rises to ₦75,000
                   </p>
                 </div>
               </div>
@@ -93,12 +93,12 @@ export default function ValueStack() {
           <div className="text-center mt-8">
             <a
               href="#register"
-              className="inline-block bg-brand-blue text-white font-medium text-[15px] px-8 py-4 rounded-lg hover:opacity-90 transition-opacity"
+              className="inline-block cta-grad text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-[0_18px_40px_rgba(255,106,61,0.35)] hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(255,106,61,0.5)]"
             >
-              Book your free discovery call →
+              Join the cohort — ₦50,000 →
             </a>
             <p className="text-[rgba(255,255,255,0.35)] text-xs mt-3">
-              40 minutes. No commitment. Spots are limited.
+              First 15 seats at ₦50,000. Enrolling now.
             </p>
           </div>
         </FadeIn>

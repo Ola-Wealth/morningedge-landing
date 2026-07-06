@@ -7,27 +7,27 @@ import FadeIn from "./FadeIn";
 const faqs = [
   {
     q: "Do I need any technical background?",
-    a: "None at all. This program was designed for business professionals, not developers. If you can use WhatsApp, you can use the tools in this program.",
+    a: "None at all. This cohort was designed for business professionals, not developers. If you can use WhatsApp, you can use the tools in this programme.",
+  },
+  {
+    q: "Is this a cohort or 1-on-1?",
+    a: "It's a live cohort — you learn alongside a small group of ambitious professionals, which is where the accountability and momentum come from. Prefer it fully personalised? We also offer a private 1-on-1 track — just talk to our team.",
+  },
+  {
+    q: "How long is it, and how is it structured?",
+    a: "Six live sessions over about six weeks — four build sessions and two hot-seat reviews, interleaved so you apply what you learn between sessions. You finish by shipping a real AI workflow for your own job.",
+  },
+  {
+    q: "What if I miss a session?",
+    a: "Every session is recorded and yours to keep, and the cohort community plus office hours help you catch up. You won't fall behind.",
   },
   {
     q: "I've tried ChatGPT and it wasn't impressive. Will this be different?",
-    a: "That's exactly why this program exists. ChatGPT isn't the problem — prompting is. Most people get poor results because they ask poorly. Session 3 alone will change your entire experience of every AI tool.",
+    a: "That's exactly why this exists. ChatGPT isn't the problem — prompting is. Most people get poor results because they ask poorly. The prompting session alone will change your entire experience of every AI tool.",
   },
   {
-    q: "How long does the full program take?",
-    a: "At one session per week, the full 12-session program takes 3 months. At two sessions per week, it's 6 weeks. You set the schedule.",
-  },
-  {
-    q: "What if I only have time for a few sessions?",
-    a: "The Starter Pack (4 sessions) and Growth Pack (8 sessions) are designed for focused outcomes. You can always continue or upgrade later.",
-  },
-  {
-    q: "What tools will I learn?",
-    a: "ChatGPT, Claude, Gemini, Notion AI, Canva AI, Microsoft Copilot, Otter.ai, Perplexity, Grammarly, and more — selected for your role.",
-  },
-  {
-    q: "Is there support between sessions?",
-    a: "Yes. WhatsApp access to your coach throughout the program for quick questions and guidance between sessions.",
+    q: "What will I walk away with?",
+    a: "A shipped AI workflow for your job, a prompt library and templates, all the session recordings, a private community, and a certificate — a system you keep, not just notes.",
   },
 ];
 

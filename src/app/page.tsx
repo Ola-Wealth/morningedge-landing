@@ -1,8 +1,11 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import ToolsBar from "./components/ToolsBar";
 import Problem from "./components/Problem";
+import Training from "./components/Training";
 import Overview from "./components/Overview";
 import HowItWorks from "./components/HowItWorks";
+import Curriculum from "./components/Curriculum";
 import WhoItsFor from "./components/WhoItsFor";
 import Deliverables from "./components/Deliverables";
 import ValueStack from "./components/ValueStack";
@@ -19,9 +22,12 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <ToolsBar />
         <Problem />
+        <Training />
         <Overview />
         <HowItWorks />
+        <Curriculum />
         <WhoItsFor />
         <Deliverables />
         <ValueStack />

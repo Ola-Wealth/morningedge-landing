@@ -16,7 +16,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-3">
               <div className="w-0.5 h-5 bg-brand-blue" />
               <span className="text-white text-sm font-medium">
-                MorningEdge Co.
+                MorningEdge AI
               </span>
             </div>
             <p className="text-[rgba(255,255,255,0.4)] text-sm leading-relaxed">
@@ -53,7 +53,7 @@ export default function Footer() {
 
         <div className="border-t border-[rgba(255,255,255,0.08)] pt-6">
           <p className="text-[rgba(255,255,255,0.3)] text-[12px] text-center tracking-wide">
-            © 2026 MorningEdge Co. All rights reserved.
+            © 2026 MorningEdge AI All rights reserved.
           </p>
         </div>
       </div>

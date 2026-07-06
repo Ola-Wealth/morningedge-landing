@@ -1,46 +1,52 @@
 import FadeIn from "./FadeIn";
 
-const packages = [
+type Pkg = {
+  name: string;
+  price: string;
+  usd: string;
+  totalValue: string;
+  duration: string;
+  desc: string;
+  cta: string;
+  highlighted: boolean;
+  badge?: string;
+  href?: string;
+  external?: boolean;
+};
+
+const packages: Pkg[] = [
   {
-    name: "Taster Session",
-    price: "₦35,000",
-    usd: "~$22 USD",
-    totalValue: "₦95,000",
-    duration: "1 session · 90 minutes",
-    desc: "For professionals who want to experience the coaching before committing.",
-    cta: "Start here",
-    highlighted: false,
-  },
-  {
-    name: "Starter Pack",
-    price: "₦120,000",
-    usd: "~$75 USD",
-    totalValue: "₦180,000",
-    duration: "4 sessions",
-    desc: "Foundations and prompting — a focused outcome in a short engagement.",
-    cta: "Get started",
-    highlighted: false,
-  },
-  {
-    name: "Growth Pack",
-    price: "₦220,000",
-    usd: "~$138 USD",
-    totalValue: "₦360,000",
-    duration: "8 sessions",
-    desc: "Full coverage of communication and operations. Best for managers and admins.",
-    cta: "Get started",
+    name: "Early Bird",
+    price: "₦50,000",
+    usd: "~$32 USD",
+    totalValue: "₦500,000",
+    duration: "6 live sessions · everything included",
+    desc: "The full cohort at the early-bird price — sessions, capstone, community, and certificate. First 15 seats only.",
+    cta: "Join the cohort — ₦50,000",
     highlighted: true,
-    badge: "Most popular",
+    badge: "First 15 seats",
   },
   {
-    name: "Full Program",
-    price: "₦300,000",
-    usd: "~$188 USD",
-    totalValue: "₦520,000",
-    duration: "12 sessions · Complete program",
-    desc: "Every module. Customised session. Personal AI system delivered at the end.",
-    cta: "Get started",
+    name: "Standard Seat",
+    price: "₦75,000",
+    usd: "~$48 USD",
+    totalValue: "₦500,000",
+    duration: "6 live sessions · everything included",
+    desc: "The same full cohort — 4 build sessions, 2 hot-seat reviews, your capstone, community, and certificate.",
+    cta: "Join the cohort",
     highlighted: false,
+  },
+  {
+    name: "1-on-1 Private Track",
+    price: "Custom",
+    usd: "By application",
+    totalValue: "",
+    duration: "Fully personalised · your schedule",
+    desc: "Prefer it bespoke and on your own schedule? Talk to our team about the private 1-on-1 track.",
+    cta: "Talk to our team",
+    highlighted: false,
+    href: "https://wa.me/2348100526153",
+    external: true,
   },
 ];
 
@@ -50,26 +56,26 @@ export default function Pricing() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <h2 className="text-[44px] leading-[1.05] text-navy text-center mb-3">
-            Choose your pace.
+            Lock in <span className="serif-i text-bright">your seat.</span>
           </h2>
           <p className="text-muted-text text-center text-lg mb-14">
-            Every package starts with a free 40-minute discovery call.
+            Early bird ends when the first 15 seats fill. 1-on-1 available on request.
           </p>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {packages.map((pkg, i) => (
             <FadeIn key={pkg.name} delay={i * 0.08}>
               <div
                 className={`relative rounded-xl p-6 flex flex-col h-full bg-white transition-all duration-300 hover:-translate-y-2 ${
                   pkg.highlighted
-                    ? "border-2 border-brand-blue shadow-lg shadow-brand-blue/10 hover:shadow-xl hover:shadow-brand-blue/15"
-                    : "border border-[#d0d0e0] hover:shadow-xl hover:shadow-navy/8 hover:border-[#b0b0cc]"
+                    ? "border-2 border-coral shadow-lg shadow-coral/15 hover:shadow-xl hover:shadow-coral/20"
+                    : "border border-line hover:shadow-xl hover:shadow-navy/8 hover:border-[#c9c8e2]"
                 }`}
               >
                 {pkg.badge && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <span className="bg-brand-blue text-white text-xs font-medium px-3 py-1 rounded-full">
+                    <span className="cta-grad text-white text-xs font-bold px-3.5 py-1 rounded-full">
                       {pkg.badge}
                     </span>
                   </div>
@@ -80,9 +86,11 @@ export default function Pricing() {
                     {pkg.name}
                   </p>
                   {/* Value vs price */}
-                  <p className="text-xs text-muted-text line-through decoration-red-400 mb-0.5">
-                    Total value: {pkg.totalValue}
-                  </p>
+                  {pkg.totalValue && (
+                    <p className="text-xs text-muted-text line-through decoration-red-400 mb-0.5">
+                      Total value: {pkg.totalValue}
+                    </p>
+                  )}
                   <p className="text-3xl font-semibold text-navy">
                     {pkg.price}
                   </p>
@@ -97,11 +105,13 @@ export default function Pricing() {
                 </p>
 
                 <a
-                  href="#register"
-                  className={`block text-center text-sm font-medium py-3 rounded-lg transition-colors duration-200 ${
+                  href={pkg.href ?? "#register"}
+                  target={pkg.external ? "_blank" : undefined}
+                  rel={pkg.external ? "noopener noreferrer" : undefined}
+                  className={`block text-center text-sm font-bold py-3.5 rounded-full transition-all duration-200 ${
                     pkg.highlighted
-                      ? "bg-brand-blue text-white hover:opacity-90"
-                      : "border border-navy text-navy hover:bg-navy hover:text-white"
+                      ? "cta-grad text-white shadow-[0_12px_28px_rgba(255,106,61,0.35)] hover:-translate-y-0.5"
+                      : "border border-navy/30 text-navy hover:bg-navy hover:text-white"
                   }`}
                 >
                   {pkg.cta}
@@ -113,7 +123,7 @@ export default function Pricing() {
 
         <FadeIn delay={0.3}>
           <p className="text-center text-muted-text text-sm mt-8">
-            Need ongoing support? Monthly retainer available at ₦100,000/month.
+            Every seat is backed by the money-back guarantee — sharper after 2 sessions, or you pay nothing.
           </p>
         </FadeIn>
       </div>

@@ -3,12 +3,7 @@
 import { useState, useEffect } from "react";
 
 const CALENDLY_URL = "https://calendly.com/olaplusb/30min";
-
-const STEPS = [
-  "Saving your details…",
-  "Reserving your spot…",
-  "Opening your booking page…",
-];
+const PAYMENT_URL = "https://paystack.shop/pay/ai-edge";
 
 const ROLE_OPTIONS = [
   "Team Lead",
@@ -28,6 +23,11 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
   const [step, setStep] = useState(0);
   const [countdown, setCountdown] = useState(3);
 
+  const DEST = isTeam ? CALENDLY_URL : PAYMENT_URL;
+  const STEPS = isTeam
+    ? ["Saving your details…", "Reserving your spot…", "Opening your booking page…"]
+    : ["Saving your details…", "Holding your seat…", "Opening secure payment…"];
+
   useEffect(() => {
     const t1 = setTimeout(() => setStep(1), 600);
     const t2 = setTimeout(() => setStep(2), 1200);
@@ -36,10 +36,10 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
 
   useEffect(() => {
     if (step !== 2) return;
-    if (countdown === 0) { window.location.href = CALENDLY_URL; return; }
+    if (countdown === 0) { window.location.href = DEST; return; }
     const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
     return () => clearTimeout(t);
-  }, [step, countdown]);
+  }, [step, countdown, DEST]);
 
   return (
     <div className="text-center py-8">
@@ -48,11 +48,11 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <h3 className="text-white text-xl font-semibold mb-2">You&apos;re all set.</h3>
-      <p className="text-[rgba(255,255,255,0.5)] text-sm mb-8">
+      <h3 className="text-navy text-xl font-bold mb-2">You&apos;re all set.</h3>
+      <p className="text-muted-text text-sm mb-8">
         {isTeam
           ? "Hold on — we're preparing your team training call."
-          : "Hold on — we're getting things ready for you."}
+          : "Your seat is held — taking you to secure payment."}
       </p>
 
       <div className="flex flex-col gap-3 text-left mb-8">
@@ -61,7 +61,7 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
           const active = i === step;
           return (
             <div key={label} className={`flex items-center gap-3 transition-opacity duration-500 ${i > step ? "opacity-30" : "opacity-100"}`}>
-              <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${done ? "bg-brand-blue" : active ? "border-2 border-brand-blue" : "border border-[rgba(255,255,255,0.2)]"}`}>
+              <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${done ? "bg-brand-blue" : active ? "border-2 border-brand-blue" : "border border-[#c9c8e2]"}`}>
                 {done && (
                   <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -72,10 +72,10 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
                   <span className="text-[10px] font-bold text-brand-blue leading-none">{countdown}</span>
                 )}
               </div>
-              <span className={`text-[14px] transition-colors duration-300 ${done || active ? "text-white" : "text-[rgba(255,255,255,0.4)]"}`}>
+              <span className={`text-[14px] transition-colors duration-300 ${done || active ? "text-navy font-medium" : "text-[#9a99b3]"}`}>
                 {label}
                 {active && i === 2 && countdown > 0 && (
-                  <span className="text-[rgba(255,255,255,0.4)] ml-1">in {countdown}s…</span>
+                  <span className="text-[#9a99b3] ml-1">in {countdown}s…</span>
                 )}
               </span>
             </div>
@@ -83,8 +83,8 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
         })}
       </div>
 
-      <a href={CALENDLY_URL} className="inline-block bg-brand-blue text-white text-sm font-medium px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
-        Open Calendly now →
+      <a href={DEST} className="inline-block cta-grad text-white text-sm font-bold px-6 py-3 rounded-full shadow-[0_12px_28px_rgba(255,106,61,0.35)] hover:-translate-y-0.5">
+        {isTeam ? "Open Calendly now →" : "Pay ₦50,000 securely →"}
       </a>
     </div>
   );
@@ -177,13 +177,13 @@ export default function Register() {
   };
 
   const inputClass =
-    "w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] text-white placeholder-[rgba(255,255,255,0.3)] rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-brand-blue transition-colors duration-200";
-  const labelClass = "block text-[rgba(255,255,255,0.6)] text-[13px] mb-1.5";
+    "w-full bg-light-bg border border-line text-navy placeholder-[#9a99b3] rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-bright focus:bg-white transition-colors duration-200";
+  const labelClass = "block text-muted-text text-[13px] font-semibold mb-1.5";
 
   const individualBullets = [
-    "No sales pressure",
-    "Fully personalised to your situation",
-    "Spots are limited each month",
+    "Secure checkout — your seat is locked instantly",
+    "Applied to your real work in hot-seat reviews",
+    "Money-back guarantee after your first 2 sessions",
   ];
   const teamBullets = [
     "Curriculum tailored to your team's function",
@@ -192,7 +192,7 @@ export default function Register() {
   ];
 
   return (
-    <section id="register" className="bg-navy py-32">
+    <section id="register" className="mesh-hero py-32">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
 
@@ -204,12 +204,12 @@ export default function Register() {
 
             {isTeam ? (
               <>
-                <h2 className="text-[40px] leading-[1.1] font-semibold text-white mb-6">
+                <h2 className="text-[40px] leading-[1.05] text-navy mb-6">
                   Train your team.
                   <br />
-                  Raise the bar.
+                  <span className="serif-i text-bright">Raise the bar.</span>
                 </h2>
-                <p className="text-[rgba(255,255,255,0.6)] text-lg leading-relaxed mb-10">
+                <p className="text-muted-text text-lg leading-relaxed mb-10">
                   One programme. Every person on your team walks away
                   AI-literate, equipped with practical tools, and ready to
                   apply them to their actual work.
@@ -217,14 +217,18 @@ export default function Register() {
               </>
             ) : (
               <>
-                <h2 className="text-[40px] leading-[1.1] font-semibold text-white mb-6">
-                  Book your free
+                <h2 className="text-[40px] leading-[1.05] text-navy mb-6">
+                  Join the
                   <br />
-                  discovery call.
+                  <span className="serif-i text-bright">cohort.</span>
                 </h2>
-                <p className="text-[rgba(255,255,255,0.6)] text-lg leading-relaxed mb-10">
-                  40 minutes. We assess your AI readiness, understand your
-                  role, and recommend the right package. No commitment required.
+                <p className="text-muted-text text-lg leading-relaxed mb-10">
+                  Fill the form, pay securely, and your seat is locked. Got a
+                  question first? Message us on WhatsApp —{" "}
+                  <a href="https://wa.me/2348100526153" target="_blank" rel="noopener noreferrer" className="text-bright font-semibold underline underline-offset-2">
+                    +234 810 052 6153
+                  </a>
+                  .
                 </p>
               </>
             )}
@@ -232,30 +236,30 @@ export default function Register() {
             <div className="flex flex-col gap-4">
               {(isTeam ? teamBullets : individualBullets).map((line) => (
                 <div key={line} className="flex items-center gap-3">
-                  <span className="text-brand-blue text-sm font-semibold">→</span>
-                  <span className="text-white text-[15px]">{line}</span>
+                  <span className="text-coral text-sm font-bold">→</span>
+                  <span className="text-navy text-[15px] font-medium">{line}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right — Form card */}
-          <div className="bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.1)] rounded-xl p-8">
+          <div className="bg-white border border-line rounded-2xl p-8 shadow-[0_30px_70px_rgba(10,10,46,0.10)]">
             {submitted ? (
               <SuccessState isTeam={isTeam} />
             ) : (
               <>
                 {/* Tab toggle */}
-                <div className="flex rounded-lg bg-[rgba(255,255,255,0.06)] p-1 mb-6">
+                <div className="flex rounded-full bg-light-bg border border-line p-1 mb-6">
                   {(["individual", "team"] as const).map((tab) => (
                     <button
                       key={tab}
                       type="button"
                       onClick={() => handleTabSwitch(tab)}
-                      className={`flex-1 text-sm font-medium py-2 rounded-md transition-all duration-200 ${
+                      className={`flex-1 text-sm font-bold py-2.5 rounded-full transition-all duration-200 cursor-pointer ${
                         activeTab === tab
-                          ? "bg-brand-blue text-white"
-                          : "text-[rgba(255,255,255,0.5)] hover:text-white"
+                          ? "bg-navy text-white shadow-sm"
+                          : "text-muted-text hover:text-navy"
                       }`}
                     >
                       {tab === "individual" ? "For Me" : "For My Team"}
@@ -300,9 +304,9 @@ export default function Register() {
                       value={selectedRole}
                       onChange={(e) => { setSelectedRole(e.target.value); setOtherRole(""); }}
                     >
-                      <option value="" className="bg-[#0a0a2e]">Select your role</option>
+                      <option value="" className="bg-white text-navy">Select your role</option>
                       {ROLE_OPTIONS.map((r) => (
-                        <option key={r} value={r} className="bg-[#0a0a2e]">{r}</option>
+                        <option key={r} value={r} className="bg-white text-navy">{r}</option>
                       ))}
                     </select>
                     {selectedRole === "Other" && (
@@ -325,7 +329,7 @@ export default function Register() {
                       {isTeam ? "Organisation name" : (
                         <span>
                           Company name{" "}
-                          <span className="text-[rgba(255,255,255,0.3)]">(optional)</span>
+                          <span className="text-[#9a99b3]">(optional)</span>
                         </span>
                       )}
                     </label>
@@ -344,9 +348,9 @@ export default function Register() {
                     <div>
                       <label htmlFor="team_size" className={labelClass}>Team size</label>
                       <select id="team_size" name="team_size" className={`${inputClass} appearance-none`}>
-                        <option value="" className="bg-[#0a0a2e]">Select team size</option>
+                        <option value="" className="bg-white text-navy">Select team size</option>
                         {TEAM_SIZES.map((s) => (
-                          <option key={s} value={s} className="bg-[#0a0a2e]">{s} people</option>
+                          <option key={s} value={s} className="bg-white text-navy">{s} people</option>
                         ))}
                       </select>
                     </div>
@@ -375,22 +379,22 @@ export default function Register() {
 
                   {/* Scarcity line */}
                   {!isTeam && (
-                    <div className="flex items-center justify-center gap-2 text-[rgba(255,100,100,0.85)] text-xs font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b6b] animate-pulse flex-shrink-0" />
-                      Only 5 spots open this month — filling fast.
+                    <div className="flex items-center justify-center gap-2 text-[#e5326e] text-xs font-semibold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#e5326e] animate-pulse flex-shrink-0" />
+                      Early bird: first 15 seats at ₦50,000 — then ₦75,000.
                     </div>
                   )}
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-brand-blue text-white font-medium text-[15px] py-4 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60 mt-1 cursor-pointer"
+                    className="w-full cta-grad text-white font-bold text-[15px] py-4 rounded-full shadow-[0_16px_36px_rgba(255,106,61,0.35)] hover:-translate-y-0.5 hover:shadow-[0_20px_44px_rgba(255,106,61,0.45)] disabled:opacity-60 mt-1 cursor-pointer"
                   >
                     {loading
                       ? "Sending…"
                       : isTeam
                       ? "Book a team training call →"
-                      : "Book my free discovery call →"}
+                      : "Join the cohort — ₦50,000 →"}
   </button>
                 </form>
               </>

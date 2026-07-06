@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local marketing deliverables (not site code)
+portfolio-exports/
+The-AI-Edge-Portfolio.pdf

@@ -2,7 +2,7 @@ import FadeIn from "./FadeIn";
 
 export default function Guarantee() {
   return (
-    <section className="bg-white py-32">
+    <section className="mesh-band py-32">
       <div className="max-w-4xl mx-auto px-6">
         <FadeIn>
           <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
@@ -38,12 +38,12 @@ export default function Guarantee() {
               </p>
               <h2 className="text-[32px] leading-[1.15] font-semibold text-navy mb-5">
                 If you&apos;re not sharper after
-                <br />3 sessions, you pay nothing.
+                <br />your first 2 sessions, you pay nothing.
               </h2>
               <p className="text-muted-text text-lg leading-relaxed mb-6">
                 We are so confident in what this programme delivers that we back
                 every engagement with a full money-back guarantee. If after your
-                first 3 sessions you don&apos;t feel meaningfully more capable,
+                first 2 sessions you don&apos;t feel meaningfully more capable,
                 more confident, and more equipped with AI — we will refund every
                 kobo. No questions asked. No awkward conversation.
               </p>

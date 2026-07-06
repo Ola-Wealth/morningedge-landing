@@ -11,7 +11,7 @@ const problems = [
   },
   {
     title: "The gap is widening every month.",
-    body: "AI literacy is becoming the dividing line between professionals who scale and those who stay busy. This program puts you on the right side of that line.",
+    body: "AI literacy is becoming the dividing line between professionals who scale and those who stay busy. This cohort puts you on the right side of that line.",
   },
 ];
 
@@ -21,16 +21,16 @@ export default function Problem() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left */}
-          <FadeIn>
-            <p className="text-xs font-medium uppercase tracking-[1.5px] text-muted-text mb-5">
+          <FadeIn from="right">
+            <p className="text-xs font-bold uppercase tracking-[2px] text-coral mb-5">
               The gap is real
             </p>
-            <h2 className="text-[40px] leading-[1.1] font-semibold text-navy">
+            <h2 className="text-[40px] md:text-[48px] leading-[1.05] text-navy">
               AI is already at work.
               <br />
-              Most professionals
+              Most professionals are
               <br />
-              are still catching up.
+              <span className="serif-i text-bright">still catching up.</span>
             </h2>
           </FadeIn>
 
@@ -38,8 +38,8 @@ export default function Problem() {
           <div className="flex flex-col gap-4">
             {problems.map((p, i) => (
               <FadeIn key={p.title} delay={i * 0.1}>
-                <div className="bg-light-bg rounded-xl border-l-[3px] border-brand-blue p-6">
-                  <h3 className="text-navy text-base font-semibold mb-2">
+                <div className="bg-light-bg rounded-2xl border border-line border-l-[3px] border-l-bright p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(10,10,46,0.08)]">
+                  <h3 className="text-navy text-base font-bold mb-2">
                     {p.title}
                   </h3>
                   <p className="text-muted-text text-[15px] leading-relaxed">
