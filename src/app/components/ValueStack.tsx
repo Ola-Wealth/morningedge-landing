@@ -12,7 +12,7 @@ const items = [
 ];
 
 const TOTAL = "₦500,000";
-const ENTRY  = "₦50,000";
+const ENTRY  = "₦49,899";
 
 export default function ValueStack() {
   return (
@@ -95,10 +95,10 @@ export default function ValueStack() {
               href="#register"
               className="inline-block cta-grad text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-[0_18px_40px_rgba(255,106,61,0.35)] hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(255,106,61,0.5)]"
             >
-              Join the cohort — ₦50,000 →
+              Join the cohort — ₦49,899 →
             </a>
             <p className="text-[rgba(255,255,255,0.35)] text-xs mt-3">
-              First 15 seats at ₦50,000. Enrolling now.
+              First 15 seats at ₦49,899. Enrolling now.
             </p>
           </div>
         </FadeIn>

@@ -17,12 +17,12 @@ type Pkg = {
 const packages: Pkg[] = [
   {
     name: "Early Bird",
-    price: "₦50,000",
+    price: "₦49,899",
     usd: "~$32 USD",
     totalValue: "₦500,000",
     duration: "6 live sessions · everything included",
     desc: "The full cohort at the early-bird price — sessions, capstone, community, and certificate. First 15 seats only.",
-    cta: "Join the cohort — ₦50,000",
+    cta: "Join the cohort — ₦49,899",
     highlighted: true,
     badge: "First 15 seats",
   },

@@ -3,6 +3,9 @@ import { createClient } from "@/lib/supabase/server";
 import { google } from "googleapis";
 
 const SHEET_ID = "1iRrJzDangjtuV4m6vKl_ikpT8dimdZaIWZ78fFxmbvQ";
+const SITE_URL = "https://morningedgesystems.com";
+const PAYMENT_URL = "https://paystack.shop/pay/ai-edge";
+const WHATSAPP_URL = "https://wa.me/2348100526153";
 
 // ── Google Sheets (secondary backup) ────────────────────────────────────────
 async function appendToSheet(row: string[]) {
@@ -20,6 +23,68 @@ async function appendToSheet(row: string[]) {
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [row] },
   });
+}
+
+// ── Instant email via Resend (skipped silently if RESEND_API_KEY unset) ─────
+function emailContent(lead: { name: string; inquiry_type: string; challenge: string }) {
+  const first = lead.name.split(" ")[0] || "there";
+  const btn = (href: string, label: string, bg = "linear-gradient(135deg,#ff6a3d,#ffb02e)") =>
+    `<a href="${href}" style="display:inline-block;background:${bg};color:#ffffff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:100px;text-decoration:none;">${label}</a>`;
+  const wrap = (inner: string) => `
+    <div style="background:#f6f5fc;padding:32px 16px;font-family:Arial,Helvetica,sans-serif;color:#0a0a2e;">
+      <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:16px;padding:36px 32px;">
+        <p style="font-size:18px;font-weight:800;margin:0 0 20px;">morning<span style="color:#2f2ff0;">edge</span></p>
+        ${inner}
+        <hr style="border:none;border-top:1px solid #e6e5f2;margin:28px 0 16px;"/>
+        <p style="font-size:12px;color:#9a99b3;margin:0;">MorningEdge AI · Lagos, Nigeria · <a href="${WHATSAPP_URL}" style="color:#2f2ff0;">WhatsApp +234 810 052 6153</a></p>
+      </div>
+    </div>`;
+
+  if (lead.inquiry_type === "scorecard" || lead.inquiry_type === "training") {
+    return {
+      subject: "Your Prompt Playbook is inside 📖",
+      html: wrap(`
+        <h1 style="font-size:22px;margin:0 0 14px;">${first}, here is your Playbook.</h1>
+        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 8px;">${lead.challenge ? `Your result: <b style="color:#0a0a2e;">${lead.challenge.replace("Scorecard: ", "")}</b>.` : ""}</p>
+        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 22px;">The framework and all 30 prompts are yours. Use five of them this week and feel the difference.</p>
+        <p style="margin:0 0 14px;">${btn(`${SITE_URL}/prompt-playbook.pdf`, "Download the Prompt Playbook →", "#1e1eb4")}</p>
+        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:22px 0 14px;">And when you're ready to close your gaps for good: 6 live sessions, your real work, a capstone you ship. First 15 seats at <b style="color:#0a0a2e;">₦49,899</b> (then ₦75,000).</p>
+        <p style="margin:0;">${btn(PAYMENT_URL, "Join the cohort — ₦49,899 →")}</p>
+      `),
+    };
+  }
+  if (lead.inquiry_type === "team") {
+    return {
+      subject: "Your team training call — MorningEdge AI",
+      html: wrap(`
+        <h1 style="font-size:22px;margin:0 0 14px;">${first}, we got your request.</h1>
+        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 22px;">We'll prepare for your team training call. If you haven't picked a time yet, grab one here:</p>
+        <p style="margin:0;">${btn("https://calendly.com/olaplusb/30min", "Pick a call time →", "#1e1eb4")}</p>
+      `),
+    };
+  }
+  return {
+    subject: "Your seat is one step away — The AI Edge",
+    html: wrap(`
+      <h1 style="font-size:22px;margin:0 0 14px;">${first}, your seat is held.</h1>
+      <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 22px;">Complete your payment and you're in the cohort — 6 live sessions, your capstone, the community, and the certificate. Early bird: <b style="color:#0a0a2e;">₦49,899</b>, first 15 seats only.</p>
+      <p style="margin:0 0 22px;">${btn(PAYMENT_URL, "Complete payment — ₦49,899 →")}</p>
+      <p style="font-size:14px;line-height:1.6;color:#5c5c72;margin:0;">Question first? <a href="${WHATSAPP_URL}" style="color:#2f2ff0;font-weight:700;">Message us on WhatsApp</a> — we reply fast.</p>
+    `),
+  };
+}
+
+async function sendEmail(lead: { name: string; email: string; inquiry_type: string; challenge: string }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key || !lead.email) return;
+  const from = process.env.EMAIL_FROM ?? "MorningEdge AI <hello@morningedgesystems.com>";
+  const { subject, html } = emailContent(lead);
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ from, to: [lead.email], subject, html }),
+  });
+  if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
 }
 
 // ── Main handler ─────────────────────────────────────────────────────────────
@@ -66,6 +131,14 @@ export async function POST(request: NextRequest) {
     console.log("✅ Lead saved to Google Sheets:", lead.name);
   } catch (err) {
     console.error("❌ Google Sheets error:", err);
+  }
+
+  // 3️⃣  Instant email (Resend — no-op until RESEND_API_KEY is configured)
+  try {
+    await sendEmail(lead);
+    console.log("✅ Welcome email sent:", lead.email);
+  } catch (err) {
+    console.error("❌ Email error:", err);
   }
 
   return NextResponse.json({ success: true });

@@ -347,15 +347,20 @@ export default function Training() {
                       ))}
                     </div>
 
-                    {PLAYBOOK_URL ? (
-                      <a href={PLAYBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-center border border-navy/25 text-navy font-bold text-[14px] py-3 rounded-full hover:bg-navy hover:text-white mb-3">
-                        Download the Prompt Playbook (free) →
+                    <div className="grid grid-cols-2 gap-2.5 mb-3">
+                      <a href={PLAYBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-center border border-navy/25 text-navy font-bold text-[13px] py-3 rounded-full hover:bg-navy hover:text-white">
+                        Download Playbook →
                       </a>
-                    ) : (
-                      <p className="text-center text-muted-text text-[13px] mb-3">
-                        📖 Your free <b className="text-navy">Prompt Playbook</b> is on its way to your WhatsApp.
-                      </p>
-                    )}
+                      <a
+                        href={`https://wa.me/2348100526153?text=${encodeURIComponent(`Hi MorningEdge, I just took the AI Readiness Scorecard. I scored ${score}/24 (${profile.name}). Send me the Prompt Playbook + cohort details.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 border border-[#25D366] bg-[#f0fdf5] text-[#0f7a3d] font-bold text-[13px] py-3 rounded-full hover:bg-[#25D366] hover:text-white"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A7.9 7.9 0 0 0 12 19.9a7.94 7.94 0 0 0 5.6-13.6ZM12 18.5a6.6 6.6 0 0 1-3.4-.9l-.24-.14-2.5.65.67-2.43-.16-.25A6.6 6.6 0 1 1 12 18.5Z"/></svg>
+                        Get it on WhatsApp
+                      </a>
+                    </div>
 
                     <a
                       href={PAYMENT_URL}
@@ -363,7 +368,7 @@ export default function Training() {
                       rel="noopener noreferrer"
                       className="cta-grad text-center text-white font-bold text-[15px] py-4 rounded-full shadow-[0_16px_36px_rgba(255,106,61,0.4)] hover:-translate-y-0.5"
                     >
-                      Close all 3 gaps — join the cohort — ₦50,000 →
+                      Close all 3 gaps — join the cohort — ₦49,899 →
                     </a>
                   </motion.div>
                 )}

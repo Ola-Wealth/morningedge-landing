@@ -84,7 +84,7 @@ function SuccessState({ isTeam }: { isTeam: boolean }) {
       </div>
 
       <a href={DEST} className="inline-block cta-grad text-white text-sm font-bold px-6 py-3 rounded-full shadow-[0_12px_28px_rgba(255,106,61,0.35)] hover:-translate-y-0.5">
-        {isTeam ? "Open Calendly now →" : "Pay ₦50,000 securely →"}
+        {isTeam ? "Open Calendly now →" : "Pay ₦49,899 securely →"}
       </a>
     </div>
   );
@@ -381,7 +381,7 @@ export default function Register() {
                   {!isTeam && (
                     <div className="flex items-center justify-center gap-2 text-[#e5326e] text-xs font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#e5326e] animate-pulse flex-shrink-0" />
-                      Early bird: first 15 seats at ₦50,000 — then ₦75,000.
+                      Early bird: first 15 seats at ₦49,899 — then ₦75,000.
                     </div>
                   )}
 
@@ -394,7 +394,7 @@ export default function Register() {
                       ? "Sending…"
                       : isTeam
                       ? "Book a team training call →"
-                      : "Join the cohort — ₦50,000 →"}
+                      : "Join the cohort — ₦49,899 →"}
   </button>
                 </form>
               </>

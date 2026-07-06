@@ -4,7 +4,7 @@ const steps = [
   {
     number: "01",
     title: "Join the cohort",
-    body: "Take the free scorecard, then secure your seat with one payment. First 15 seats at ₦50,000.",
+    body: "Take the free scorecard, then secure your seat with one payment. First 15 seats at ₦49,899.",
   },
   {
     number: "02",
