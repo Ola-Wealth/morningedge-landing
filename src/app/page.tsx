@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import StickyCTA from "./components/StickyCTA";
 import Hero from "./components/Hero";
 import ToolsBar from "./components/ToolsBar";
 import Problem from "./components/Problem";
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <StickyCTA />
       <main>
         <Hero />
         <ToolsBar />
