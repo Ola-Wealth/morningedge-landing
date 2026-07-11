@@ -42,15 +42,52 @@ function emailContent(lead: { name: string; inquiry_type: string; challenge: str
     </div>`;
 
   if (lead.inquiry_type === "scorecard" || lead.inquiry_type === "training") {
+    // Parse the score out of "Scorecard: 18/24 — The Practitioner"
+    const m = lead.challenge.match(/(\d+)\s*\/\s*24/);
+    const score = m ? parseInt(m[1], 10) : -1;
+
+    // Four score bands, mirroring the WhatsApp replies
+    const p = (t: string) => `<p style="font-size:15px;line-height:1.65;color:#5c5c72;margin:0 0 16px;">${t}</p>`;
+    const bands = [
+      {
+        max: 6, name: "The Observer",
+        insight: p(`Honestly? That's the most exciting score to get. Right now AI is happening <i>around</i> you. In six weeks it can be working <i>for</i> you, and you'll feel the jump faster than anyone.`),
+        close: p(`Any question at all, just reply to this email or message us on <a href="${WHATSAPP_URL}" style="color:#2f2ff0;font-weight:700;">WhatsApp</a>.`),
+      },
+      {
+        max: 12, name: "The Dabbler",
+        insight: p(`You already use AI, but a bit like a search engine. The real power sits one layer deeper, and it's learnable in weeks, not years. The framework in your Playbook alone will change the answers you get.`),
+        close: p(`Questions? Just reply, we answer fast.`),
+      },
+      {
+        max: 18, name: "The Practitioner",
+        insight: p(`Strong. You're already ahead of most professionals. Here's the honest bit: what's capping you now isn't knowledge. It's a <b style="color:#0a0a2e;">system</b>, reps, feedback, and a structure that makes it stick.`),
+        close: p(`Want me to point out which sessions hit your specific gaps? Just reply.`),
+      },
+      {
+        max: 24, name: "The Sharp Edge",
+        insight: p(`Seriously impressive, you're in the top tier. You don't need more tips. You need structure, reps, and a room of sharp people pushing you further.`),
+        close: p(`Prefer it fully 1-on-1? Reply and we'll share the private track.`),
+      },
+    ];
+    const band = score < 0 ? null : bands.find((b) => score <= b.max) ?? bands[bands.length - 1];
+
+    const scoreLine = band
+      ? `<p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 16px;">Your result: <b style="color:#0a0a2e;">${score}/24 — ${band.name}.</b></p>`
+      : "";
+    const insight = band ? band.insight : p(`The framework and all 30 prompts are yours. Use five of them this week and feel the difference.`);
+    const close = band ? band.close : p(`Question first? <a href="${WHATSAPP_URL}" style="color:#2f2ff0;font-weight:700;">Message us on WhatsApp</a>, we reply fast.`);
+
     return {
-      subject: "Your Prompt Playbook is inside 📖",
+      subject: band ? `${first}, your Prompt Playbook (${band.name})` : "Your Prompt Playbook is inside 📖",
       html: wrap(`
         <h1 style="font-size:22px;margin:0 0 14px;">${first}, here is your Playbook.</h1>
-        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 8px;">${lead.challenge ? `Your result: <b style="color:#0a0a2e;">${lead.challenge.replace("Scorecard: ", "")}</b>.` : ""}</p>
-        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:0 0 22px;">The framework and all 30 prompts are yours. Use five of them this week and feel the difference.</p>
-        <p style="margin:0 0 14px;">${btn(`${SITE_URL}/prompt-playbook.pdf`, "Download the Prompt Playbook →", "#1e1eb4")}</p>
-        <p style="font-size:15px;line-height:1.6;color:#5c5c72;margin:22px 0 14px;">And when you're ready to close your gaps for good: 6 live sessions, your real work, a capstone you ship. First 15 seats at <b style="color:#0a0a2e;">₦49,899</b> (then ₦75,000).</p>
-        <p style="margin:0;">${btn(PAYMENT_URL, "Join the cohort — ₦49,899 →")}</p>
+        ${scoreLine}
+        ${insight}
+        <p style="margin:2px 0 20px;">${btn(`${SITE_URL}/prompt-playbook.pdf`, "Download the Prompt Playbook →", "#1e1eb4")}</p>
+        <p style="font-size:15px;line-height:1.65;color:#5c5c72;margin:0 0 16px;">And when you're ready to close the gap for good: <b style="color:#0a0a2e;">The AI Edge</b> — 6 live sessions, applied to your real work, ending with a capstone you ship. First 15 seats at <b style="color:#0a0a2e;">₦49,899</b> (then ₦75,000). Not sharper after 2 sessions? You pay nothing.</p>
+        <p style="margin:0 0 4px;">${btn(PAYMENT_URL, "Join the cohort — ₦49,899 →")}</p>
+        ${close}
       `),
     };
   }
